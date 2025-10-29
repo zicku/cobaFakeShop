@@ -30,8 +30,14 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Data anda tidak ditemukan'], 404);
+        }
+
         return response()->json($product);
     }
 
